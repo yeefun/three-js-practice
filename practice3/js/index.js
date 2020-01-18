@@ -44,16 +44,16 @@ function init () {
     // console.log(gltf)
     const model = gltf.scene
     // model.position.set(0, 0, 0)
-    // model.scale.set(0.01, 0.01, 0.01)
+    model.scale.set(0.01, 0.01, 0.01)
     // model.matrixAutoUpdate = false
     // console.log(model.matrix);
     scene.add(model)
   })
 
   // light
-  scene.add(new THREE.AmbientLight(0xffffff, 2))
+  scene.add(new THREE.AmbientLight())
 
-  spotLight = new THREE.SpotLight(0xffffff)
+  spotLight = new THREE.SpotLight(0xffffff, 1.2)
   spotLight.position.set(-100, 100, 100)
   // spotLight.castShadow = true
   scene.add(spotLight)

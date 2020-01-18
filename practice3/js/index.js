@@ -1,7 +1,7 @@
-import * as THREE from '/node_modules/three/build/three.module.js'
-import Stats from '/node_modules/three/examples/jsm/libs/stats.module.js'
-import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js'
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from '../../node_modules/three/build/three.module.js'
+import Stats from '../../node_modules/three/examples/jsm/libs/stats.module.js'
+import { GLTFLoader } from '../../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
+import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js'
 
 let container
 let scene
@@ -40,7 +40,7 @@ function init () {
 
   // loader
   const loader = new GLTFLoader()
-  loader.load('/assets/models/gltf/prison.glb', function (gltf) {
+  loader.load('../../assets/models/gltf/prison.glb', function (gltf) {
     // console.log(gltf)
     const model = gltf.scene
     // model.position.set(0, 0, 0)

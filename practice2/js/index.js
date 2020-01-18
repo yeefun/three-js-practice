@@ -1,10 +1,10 @@
 // https://threejs.org/examples/#webgl_animation_keyframes
 
-import * as THREE from '/node_modules/three/build/three.module.js'
-import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js'
-import { DRACOLoader } from '/node_modules/three/examples/jsm/loaders/DRACOLoader.js'
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js'
-import Stats from '/node_modules/three/examples/jsm/libs/stats.module.js'
+import * as THREE from '../../node_modules/three/build/three.module.js'
+import { GLTFLoader } from '../../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
+import { DRACOLoader } from '../../node_modules/three/examples/jsm/loaders/DRACOLoader.js'
+import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import Stats from '../../node_modules/three/examples/jsm/libs/stats.module.js'
 
 let container
 let scene
@@ -43,8 +43,9 @@ function init () {
   controls.update()
   // controls.enablePan = false
 
-  const axesHelper = new THREE.AxesHelper(20)
-  scene.add(axesHelper)
+  // const axesHelper = new THREE.AxesHelper(20)
+  // scene.add(axesHelper)
+  
   // const cameraHelper = new THREE.CameraHelper(camera)
   // scene.add(cameraHelper)
 
@@ -64,14 +65,14 @@ function init () {
 
   // ???
   const dracoLoader = new DRACOLoader()
-  dracoLoader.setDecoderPath('/node_modules/three/examples/js/libs/draco/gltf/')
+  dracoLoader.setDecoderPath('../../node_modules/three/examples/js/libs/draco/gltf/')
   // ???
 
   const loader = new GLTFLoader()
   // ???
   loader.setDRACOLoader(dracoLoader)
   // ???
-  loader.load('/assets/models/gltf/LittlestTokyo.glb', function (gltf) {
+  loader.load('../../assets/models/gltf/LittlestTokyo.glb', function (gltf) {
     // console.log(gltf)
     
     const model = gltf.scene

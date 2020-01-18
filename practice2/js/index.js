@@ -6,6 +6,8 @@ import { DRACOLoader } from '../../node_modules/three/examples/jsm/loaders/DRACO
 import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js'
 import Stats from '../../node_modules/three/examples/jsm/libs/stats.module.js'
 
+const pathname = location.pathname.includes('three-js-practice') ? '/three-js-practice' : ''
+
 let container
 let scene
 let camera
@@ -72,7 +74,7 @@ function init () {
   // ???
   loader.setDRACOLoader(dracoLoader)
   // ???
-  loader.load('../../assets/models/gltf/LittlestTokyo.glb', function (gltf) {
+  loader.load(`${pathname}/assets/models/gltf/LittlestTokyo.glb`, function (gltf) {
     // console.log(gltf)
     
     const model = gltf.scene

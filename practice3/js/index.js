@@ -3,6 +3,8 @@ import Stats from '../../node_modules/three/examples/jsm/libs/stats.module.js'
 import { GLTFLoader } from '../../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from '../../node_modules/three/examples/jsm/controls/OrbitControls.js'
 
+const pathname = location.pathname.includes('three-js-practice') ? '/three-js-practice' : ''
+
 let container
 let scene
 let camera
@@ -40,7 +42,7 @@ function init () {
 
   // loader
   const loader = new GLTFLoader()
-  loader.load('../../assets/models/gltf/prison.glb', function (gltf) {
+  loader.load(`${pathname}/assets/models/gltf/prison.glb`, function (gltf) {
     // console.log(gltf)
     const model = gltf.scene
     // model.position.set(0, 0, 0)

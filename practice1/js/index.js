@@ -5,6 +5,8 @@ import { RGBELoader } from '../../node_modules/three/examples/jsm/loaders/RGBELo
 import { GLTFLoader } from '../../node_modules/three/examples/jsm/loaders/GLTFLoader.js'
 // import { RoughnessMipmapper } from '../../node_modules/three/examples/jsm/utils/RoughnessMipmapper.js'
 
+const pathname = location.pathname.includes('three-js-practice') ? '/three-js-practice' : ''
+
 let container
 let scene
 let camera
@@ -25,7 +27,7 @@ function init () {
 
   new RGBELoader()
     // .setDataType(THREE.UnsignedByteType)
-    .setPath('../../assets/textures/equirectangular/')
+    .setPath(`${pathname}/assets/textures/equirectangular/`)
     .load('royal_esplanade_1k.hdr', function (texture) {
       var envMap = pmremGenerator.fromEquirectangular(texture).texture
       pmremGenerator.dispose()
@@ -34,7 +36,7 @@ function init () {
 
       // model
       // const roughnessMipmapper = new RoughnessMipmapper(renderer)
-      const loader = new GLTFLoader().setPath('../../assets/models/gltf/DamagedHelmet/glTF/')
+      const loader = new GLTFLoader().setPath(`${pathname}/assets/models/gltf/DamagedHelmet/glTF/`)
       loader.load('DamagedHelmet.gltf', function (gltf) {
         // gltf.scene.traverse(function (child) {
         //   if (child.isMesh) {

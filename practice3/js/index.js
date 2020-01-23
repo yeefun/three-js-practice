@@ -10,15 +10,18 @@ let scene
 let camera
 let spotLight
 let renderer
+let mixer
+let clock
 let controls
 let stats
 
 init()
-animate()
 
 function init () {
   container = document.createElement('div')
   document.body.appendChild(container)
+
+  clock = new THREE.Clock()
 
   stats = new Stats()
   container.appendChild(stats.dom)
@@ -35,35 +38,47 @@ function init () {
   // renderer
   renderer = new THREE.WebGLRenderer({
     antialias: true
+    // logarithmicDepthBuffer: true
   })
+  // renderer.physicallyCorrectLight = true
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
   container.appendChild(renderer.domElement)
+  // renderer.outputEncoding = THREE.sRGBEncoding
 
   // loader
   const loader = new GLTFLoader()
-  loader.load(`${pathname}/assets/models/gltf/prison.glb`, function (gltf) {
-    // console.log(gltf)
+  loader.load(`${pathname}/assets/models/gltf/prison-door.glb`, function (gltf) {
+    console.log(gltf)
     const model = gltf.scene
     // model.position.set(0, 0, 0)
     model.scale.set(0.01, 0.01, 0.01)
-    // model.matrixAutoUpdate = false
-    // console.log(model.matrix);
+    // camera = gltf.cameras[0]
+    camera.updateProjectionMatrix()
+    mixer = new THREE.AnimationMixer(model)
+    gltf.animations.forEach((clip) => {
+      mixer.clipAction(clip).play()
+    })
+    // model.traverse((child) => {
+    //   if (child.material) child.material.metalness = 0
+    // })
+
     scene.add(model)
+    animate()
   })
 
   // light
   scene.add(new THREE.AmbientLight())
 
-  spotLight = new THREE.SpotLight(0xffffff, 1.2)
+  spotLight = new THREE.SpotLight(0xffffff, 1)
   spotLight.position.set(-100, 100, 100)
   // spotLight.castShadow = true
   scene.add(spotLight)
 
   // controls
   controls = new OrbitControls(camera, renderer.domElement)
-  // controls.target.set(0, 0.5, 0)
-  // controls.update()
+  controls.target.set(0, 0.5, 0)
+  controls.update()
 
   // helper
   // const axesHelper = new THREE.AxesHelper(20)
@@ -77,6 +92,8 @@ function init () {
 }
 
 function animate() {
+  const delta = clock.getDelta()
+  mixer.update(delta)
   stats.update()
   renderer.render(scene, camera)
   requestAnimationFrame(animate)

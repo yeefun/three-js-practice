@@ -3,6 +3,9 @@ html, body {
 }
 
 body {
-  overflow: hidden;
   background-color: #8694a7;
+}
+
+canvas {
+  display: block;
 }

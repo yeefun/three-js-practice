@@ -9,6 +9,6 @@
   "author": "Yeefun",
   "license": "ISC",
   "dependencies": {
-    "three": "^0.112.1"
+    "three": "^0.125.0"
   }
 }
